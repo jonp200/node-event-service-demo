@@ -1,7 +1,9 @@
 import {add, arrowAddFn} from "./math.js";
 import {awardPoints, NO_NAME, Player} from "./player.js";
+import {normalizeEvent} from "./events/normalize-event.js";
 
 let player: Player = {
+    playerId: "player-1",
     name: NO_NAME,
     score: 0,
 }
@@ -25,6 +27,14 @@ const award = 10;
 console.log(`Awarding ${award} points to the player...`);
 
 player = awardPoints(player, award);
+
+const event = normalizeEvent({
+    type: "POINTS_AWARDED",
+    player_id: player.playerId,
+    points: award.toString(),
+});
+
+console.log(`Event: ${JSON.stringify(event)}`);
 
 console.log(`Updated score: ${player.score}`);
 

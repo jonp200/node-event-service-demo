@@ -1,7 +1,7 @@
 export type Player = {
+    playerId: string;
     name: string;
     score: number;
-    email?: string;
 }
 
 export function awardPoints(player: Player, points: number): Player {

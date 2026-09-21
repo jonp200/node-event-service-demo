@@ -10,20 +10,16 @@ export type PointsAwarded = {
     points: number;
 };
 
-export function normalizePointsAwarded(raw: RawPointsAwarded): PointsAwarded {
-    if (raw.points.trim() === "") {
-        throw new Error("Points value is required");
-    }
+export function normalizePointsAwarded(input: RawPointsAwarded): PointsAwarded {
+    const points = Number(input.points);
 
-    const points = Number(raw.points);
-
-    if (!Number.isFinite(points)) {
+    if (input.points.trim() === "" || !Number.isFinite(points)) {
         throw new Error("Invalid points value");
     }
 
     return {
         type: "points.awarded",
-        playerId: raw.player_id,
+        playerId: input.player_id,
         points,
     };
 }
