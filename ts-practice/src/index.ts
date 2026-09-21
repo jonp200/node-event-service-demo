@@ -1,33 +1,32 @@
-const noname = "Jon";
+import {add, arrowAddFn} from "./math.js";
+import {awardPoints, NO_NAME, Player} from "./player.js";
 
-type User = {
-    name: string;
-    score: number;
-    email?: string;
-}
-
-let user: User = {
-    name: noname,
+let player: Player = {
+    name: NO_NAME,
     score: 0,
 }
 
 function greet(name: string): string {
-    user.score++;
+    player.score++;
 
     if (name !== "") {
-        user.name = name;
+        player.name = name;
     }
 
-    return `Hello, ${user.name}!`;
+    return `Hello, ${player.name}!`;
 }
 
 console.log(greet("Jon"));
-console.log(`Score: ${user.score}`);
-console.log(user);
 
-function add(a: number, b: number): number {
-    return a + b;
-}
+console.log(`Initial score: ${player.score}`);
+
+const award = 10;
+
+console.log(`Awarding ${award} points to the player...`);
+
+player = awardPoints(player, award);
+
+console.log(`Updated score: ${player.score}`);
 
 const a = 1,
     b = 2,
@@ -35,7 +34,6 @@ const a = 1,
 
 console.log(`Sum of ${a} and ${b}: ${sum}`);
 
-const arrowAddFn = (a: number, b: number): number => a + b;
-
 const arrowSum = arrowAddFn(a, b);
+
 console.log(`Sum of ${a} and ${b} using arrow function: ${arrowSum}`);
