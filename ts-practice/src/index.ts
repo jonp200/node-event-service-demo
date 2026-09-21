@@ -1,15 +1,26 @@
 const noname = "Jon";
-let callCount = 0;
+
+type User = {
+    name: string;
+    score: number;
+    email?: string;
+}
+
+let user: User = {
+    name: noname,
+    score: 0,
+}
 
 function greet(name: string): string {
-    callCount++;
+    user.score++;
 
-    if (name === "") {
-        name = noname;
+    if (name !== "") {
+        user.name = name;
     }
 
-    return `Hello, ${name}!`;
+    return `Hello, ${user.name}!`;
 }
 
 console.log(greet("Jon"));
-console.log(`Call count: ${callCount}`);
+console.log(`Score: ${user.score}`);
+console.log(user);
