@@ -10,10 +10,10 @@ export type PlayerCreated = {
     name: string;
 };
 
-export function normalizePlayerCreated(input: RawPlayerCreated): PlayerCreated {
+export function normalizePlayerCreated({player_id: playerId, name}: RawPlayerCreated): PlayerCreated {
     return {
         type: "player.created",
-        playerId: input.player_id,
-        name: input.name.trim(),
+        playerId: playerId,
+        name: name.trim(),
     };
 }

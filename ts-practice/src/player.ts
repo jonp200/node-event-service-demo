@@ -4,6 +4,16 @@ export type Player = {
     score: number;
 }
 
+export function greet(player: Player, name: string): string {
+    player.score++;
+
+    if (name !== "") {
+        player.name = name;
+    }
+
+    return `Hello, ${player.name}!`;
+}
+
 export function awardPoints(player: Player, points: number): Player {
     return {
         ...player, // Copy the existing properties
@@ -11,4 +21,4 @@ export function awardPoints(player: Player, points: number): Player {
     }
 }
 
-export const NO_NAME = "Jon";
+export const NO_NAME = "No name";
