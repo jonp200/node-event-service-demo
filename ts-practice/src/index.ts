@@ -1,40 +1,25 @@
 import {add, arrowAddFn} from "./math.js";
-import {awardPoints, greet, NO_NAME, Player} from "./player.js";
-import {normalizeEvent} from "./events/normalize-event.js";
+import {award, createPlayer, createPointsAwarder} from "./player.js";
 
-let player: Player = {
-    playerId: "player-1",
-    name: NO_NAME,
-    score: 0,
-}
+const player1 = createPlayer("player-1", "") // Intentionally left blank to confirm default name
 
-console.log(greet(player, "Jon"));
+const awarder1 = createPointsAwarder(player1);
 
-const playerCreatedEvent = normalizeEvent({
-    type: "PLAYER_CREATED",
-    player_id: player.playerId,
-    name: player.name,
-});
+award(10, player1, awarder1);
 
-console.log(`Player created event: ${JSON.stringify(playerCreatedEvent)}`);
+award(20, player1, awarder1);
 
-console.log(`Initial score: ${player.score}`);
+console.log("==================================");
 
-const award = 10;
+const player2 = createPlayer("player-2", "Jon")
 
-console.log(`Awarding ${award} points to the player...`);
+const awarder2 = createPointsAwarder(player2);
 
-player = awardPoints(player, award);
+award(50, player2, awarder2);
 
-const pointsAwardedEvent = normalizeEvent({
-    type: "POINTS_AWARDED",
-    player_id: player.playerId,
-    points: award.toString(),
-});
+award(60, player2, awarder2);
 
-console.log(`Award event: ${JSON.stringify(pointsAwardedEvent)}`);
-
-console.log(`Updated score: ${player.score}`);
+console.log("==================================");
 
 const a = 1, b = 2,
     sum = add(a, b);
