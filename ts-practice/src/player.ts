@@ -18,7 +18,7 @@ export function greet(player: Player, name: string): string {
     return `Hello, ${player.name}!`;
 }
 
-export function createPlayer(id : string, name: string): Player {
+export function createPlayer(id: string, name: string): Player {
     const player: Player = {
         playerId: id,
         name: NO_NAME,
@@ -33,7 +33,10 @@ export function createPlayer(id : string, name: string): Player {
         name: player.name,
     });
 
-    console.log(`Player created event: ${JSON.stringify(event)}`);
+    // Demonstrating strict equality
+    if (event.type === "player.created") {
+        console.log(`Player created event: ${JSON.stringify(event)}`);
+    }
 
     console.log(`[${player.name}] Initial score: ${player.score}`);
 
@@ -58,7 +61,10 @@ export function award(points: number, player: Player, fn: (score: number) => num
         points: points.toString(),
     });
 
-    console.log(`Award event: ${JSON.stringify(event)}`);
+    // Demonstrating strict equality
+    if (event.type === "points.awarded") {
+        console.log(`Award event: ${JSON.stringify(event)}`);
+    }
 
     console.log(`[${player.name}] Updated score: ${player.score}`);
 }
