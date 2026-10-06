@@ -4,6 +4,8 @@ export type Player = {
     playerId: string;
     name: string;
     score: number;
+    wins: number | null; // Nullable number; null when unassigned
+    email?: string; // Optional field; undefined when unassigned
 }
 
 export const NO_NAME = "No name";
@@ -15,14 +17,27 @@ export function greet(player: Player, name: string): string {
         player.name = name;
     }
 
-    return `Hello, ${player.name}!`;
+    const msg = `Hello, ${player.name}!`;
+
+    // An `undefined` value indicates that it is unassigned or missing
+    if (player.email === undefined) {
+        console.log("Player email was left blank");
+    }
+
+    // A `null` value indicates that it was explicitly assigned empty
+    if (player.wins === null) {
+        console.log("Player is new to the game");
+    }
+
+    return msg;
 }
 
 export function createPlayer(id: string, name: string): Player {
     const player: Player = {
         playerId: id,
         name: NO_NAME,
-        score: 0,
+        wins: null,
+        score: 0
     };
 
     console.log(greet(player, name));
