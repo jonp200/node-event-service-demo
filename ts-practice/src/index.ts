@@ -57,3 +57,29 @@ if (player1.playerId === player2.playerId && player1.name === player2.name && pl
     console.log("Manual strict equalities");
     console.log(">> If isDeepStrictEqual is true, these manual strict equalities should also be true.");
 }
+
+console.log("==================================");
+
+let x: string | undefined = undefined;
+
+console.log(x ?? "hello"); // This prints "hello", since x is undefined
+
+x = "hi";
+
+console.log(x ?? "hello"); // This prints "hi", since x is now assigned with "hi"
+
+let y: string = "";
+
+console.log(y || "hello again"); // This prints "hello again", since y is 'falsy', an empty string
+
+y = "hi again";
+
+console.log(y || "bye"); // This prints "hi again", since y is now assigned with "hi again"
+
+let z: string = "";
+
+console.log(z ?? "see you later"); // This prints empty string, since z is 'assigned' with an empty string
+
+z = "bye";
+
+console.log(z ?? "see you"); // This prints "bye", since z is now 'assigned' with "bye"
